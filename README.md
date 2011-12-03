@@ -1,0 +1,3 @@
+# localized charity events aggregator
+
+... more to come ...

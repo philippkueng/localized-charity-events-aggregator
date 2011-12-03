@@ -24,8 +24,14 @@ action(function create() {
 });
 
 action(function index() {
+    var mongoose = require('mongoose'),
+        db = mongoose.connect('mongodb://localhost/localized-charity-events-aggregator-dev'),
+        Event = db.model('Event'),
+        events = [];
+
     this.title = 'Events index';
-    Event.all(function (err, events) {
+
+    Event.find({}).asc('startDate').exec({}, function (err, events) {
         render({
             events: events
         });

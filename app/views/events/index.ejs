@@ -5,7 +5,7 @@
 <% events.forEach(function (event) { %>
 <div class="row">
   <div class="span-two-thirds">
-    event #<%= event.id %>
+    <%- link_to(event.title, path_to.event(event)) %>
   </div>
   <div class="span-one-third">
     <%- link_to('Edit', path_to.edit_event(event), {class: 'btn primary'}) %>

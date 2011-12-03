@@ -1,0 +1,11 @@
+<div class="page-header">
+  <h1>Edit event</h1>
+</div>
+
+<% form_for(event, {action: path_to.event(event), method: 'PUT', id: "event_form"}, function (form) { %>
+  <%- partial('events/form.ejs', {locals: {form: form, event: event}}) %>
+  <div class="actions">
+    <%- form.submit('Update event', {class: 'btn primary'}) %> or
+    <%- link_to('Cancel', path_to.event(event), {class: 'btn'}) %>
+  </div>
+<% });%>

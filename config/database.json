@@ -1,0 +1,21 @@
+{ "development":
+  { "driver":   "mongoose"
+  , "host":     "localhost"
+  , "database": "localized-charity-events-aggregator-dev"
+  }
+, "test":
+  { "driver":   "mongoose"
+  , "host":     "localhost"
+  , "database": "localized-charity-events-aggregator-test"
+  }
+, "staging":
+  { "driver":   "mongoose"
+  , "host":     "localhost"
+  , "database": "localized-charity-events-aggregator-staging"
+  }
+, "production":
+  { "driver":   "mongoose"
+  , "host":     "localhost"
+  , "database": "localized-charity-events-aggregator-production"
+  }
+}

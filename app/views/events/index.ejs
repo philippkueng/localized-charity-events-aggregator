@@ -1,0 +1,21 @@
+<div class="page-header">
+  <h1>Index of event</h1>
+</div>
+
+<% events.forEach(function (event) { %>
+<div class="row">
+  <div class="span-two-thirds">
+    event #<%= event.id %>
+  </div>
+  <div class="span-one-third">
+    <%- link_to('Edit', path_to.edit_event(event), {class: 'btn primary'}) %>
+    <%- link_to('Delete', path_to.event(event), {class: 'btn danger', method: 'delete', remote: true, jsonp: '(function (u) {location.href = u;})'}) %>
+  </div>
+</div>
+<% }); %>
+
+<hr/>
+
+<div class="well">
+  <%- link_to('New event', path_to.new_event, {class: 'btn'}) %>
+</div>

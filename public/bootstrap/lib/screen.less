@@ -1,0 +1,171 @@
+body {
+	#font > .serif();
+	text-shadow: 0 1px 0 darken(@white, 10%);
+	background: darken(@white, 15%) url(img/noise.png) top left repeat;
+	color: lighten(@black, 30%);
+}
+
+h1 {
+	font-size: 24px;
+	margin-top: 12px;
+	margin-bottom: 4px;
+}
+p {
+	font-size: 16px;
+	line-height: 20px;
+}
+
+#calendarSearch {
+	margin-top: 20px;
+	> div {
+
+	}
+}
+
+#calendarNavigation {
+	@color: lighten(@black, 30%);
+	color: @color;
+	margin-bottom: 20px;
+	a {
+		color: @color;
+		text-decoration: none;
+	}
+	> div {
+		position: relative;
+		height: 50px;
+		border-bottom: 2px solid lighten(@black, 40%);
+		box-shadow: 0 1px 0 0 darken(@white, 10%);
+		&.year {
+			p {
+				position: absolute;
+				color: lighten(@black, 30%);
+				font-size: 2.4em;
+				bottom: -1px;
+				vertical-align: middle;
+			}
+			a {
+				.border-radius(50%);
+				position: absolute;
+				color: @white;
+				background-color: lighten(@black, 30%);
+				display: inline-block;
+				width: 18px;
+				height: 18px;
+				font-size: 1em;
+				line-height: 16px;
+				text-align: center;
+				text-shadow: none;
+				box-shadow: 0 1px 0 0 darken(@white, 10%);
+				&.previous {
+					right: 22px;
+					bottom: 4px;
+				}
+				&.next {
+					right: 0;
+					bottom: 4px;
+				}
+			}
+		}
+	}
+	> ul {
+		position: relative;
+		list-style-type: none;
+		padding: 0;
+		> li {
+			position: relative;
+			text-align: left;
+			height: 50px;
+			width: 40px;
+			margin-left: 20px;
+			float: left;
+			line-height: normal;
+			border-bottom: 2px solid lighten(@black, 40%);
+			vertical-align: middle;
+			box-shadow: 0 1px 0 0 darken(@white, 10%);
+			a {
+				position: absolute;
+				bottom: 3px;
+				margin: 0;
+				padding: 0 1px;
+				line-height: normal;
+			}
+			&:first-child {
+				margin-left: 0;
+			}
+			&:hover {
+				&.past,
+				&.future {
+					a {
+						color: @baseColor;
+					}
+					border-bottom-color: lighten(@baseColor, 10%);
+				}
+			}
+			&.past {
+				a {
+					color: lighten(@black, 60%);
+				}
+				border-bottom-color: lighten(@black, 70%);
+			}
+			&.future {}
+			&.active {
+				a {
+					color: @baseColor;
+				}
+				border-bottom-color: lighten(@baseColor, 10%);
+				border-bottom-width: 4px;
+			}
+		}
+	}
+}
+
+#calendar {
+	list-style-type: none;
+	margin-left: 0;
+	> li {
+		.clearfix();
+		padding-bottom: 30px;
+		border-top: 1px solid darken(@white, 25%);
+		background-image: -moz-linear-gradient(bottom, hsla(0,0%,100%,0), hsla(0,0%,100%,0.4));
+		> div {
+			float: left;
+			margin-left: 20px;
+			&:first-child {
+				margin-left: 0;
+				text-align: right;
+			}
+		}
+	}
+}
+
+.calendarIcon {
+	.border-radius(4px);
+	position: relative;
+	display: inline-block;
+	font-size: 40px;
+	padding: 12px 4px 4px 4px;
+	margin-top: -12px;
+	background: darken(@white, 10%) url(img/noise.png) top left repeat;
+	color: lighten(@black, 30%);
+	border: 1px solid lighten(@black, 60%);
+	box-shadow: 0 2px 0 0 lighten(@black, 60%);
+	text-shadow: 0 1px 0 @white;
+	min-width: 46px;
+	height: 50px;
+	line-height: 52px;
+	.clip {
+		.border-radius(2px);
+		position: absolute;
+		top: -6px;
+		width: 5px;
+		height: 10px;
+		background-color: lighten(@black, 80%);
+		border: 1px solid lighten(@black, 60%);
+		&:first-child {
+			left: 10px;
+		}
+		&:last-child {
+			right: 10px;
+		}
+	}
+}

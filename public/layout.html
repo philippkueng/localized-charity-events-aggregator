@@ -1,0 +1,108 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	<title>Title</title>
+	<meta name="description" content="description">
+	<meta name="author" content="author">
+
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+
+	<link rel="stylesheet" href="bootstrap/bootstrap.css">
+
+	<link rel="shortcut icon" href="favicon.png">
+	<link href="http://fonts.googleapis.com/css?family=Droid+Serif:regular,bold" rel="stylesheet" type="text/css">
+
+	<script src="javascripts/libs/modernizr-2.0.6.min.js"></script>
+</head>
+
+<body>
+
+	<div class="container">
+
+		<div id="calendarSearch" class="row">
+			<div class="span6 offset4"><input type="text" class="span6" /></div>
+			<div class="span2"><button class="btn primary span2">Search</button></div>
+		</div>
+
+		<div id="calendarNavigation" class="row">
+			<div class="span4 year"><p>2012</p><a href="" class="previous">&laquo;</a><a href="" class="next">&raquo;</a></div>
+			<ul class="span12">
+				<li class="past"><a href="">JAN</a></li>
+				<li class="past"><a href="">FEB</a></li>
+				<li class="past"><a href="">MAR</a></li>
+				<li class="future active"><a href="">APR</a></li>
+				<li class="future"><a href="">MAY</a></li>
+				<li class="future"><a href="">JUN</a></li>
+				<li class="future"><a href="">JUL</a></li>
+				<li class="future"><a href="">AUG</a></li>
+				<li class="future"><a href="">SEP</a></li>
+				<li class="future"><a href="">OCT</a></li>
+				<li class="future"><a href="">NOV</a></li>
+				<li class="future"><a href="">DEC</a></li>
+			</ul>
+		</div>
+
+
+		<ul id="calendar" class="row">
+			<li>
+				<div class="span4">
+					<div class="calendarIcon">28
+						<span class="clip"></span>
+						<span class="clip"></span>
+					</div>
+					<div class="calendarTime">
+						14:00 - 20:00
+					</div>
+
+					</span>
+				</div>
+				<div class="span12">
+					<h1>This is the title of the charity event</h1>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				</div>
+			</li>
+			<li>
+				<div class="span4">
+					<span class="calendarIcon">30
+						<span class="clip"></span>
+						<span class="clip"></span>
+					</span>
+				</div>
+				<div class="span12">
+					<h1>This is the title of the charity event</h1>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				</div>
+			</li>
+		</ul>
+
+	</div>
+
+<!--	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> -->
+	<script>window.jQuery || document.write('<script src="javascripts/libs/jquery-1.7.1.min.js"><\/script>')</script>
+
+	<script>
+		$(window).load(function() {
+		});
+	</script>
+
+	<script>
+		window._gaq = [['_setAccount','UA-XXXXXXXX-X'],['_trackPageview'],['_trackPageLoadTime']];
+		Modernizr.load({
+			load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
+		});
+	</script>
+
+
+	<!--[if lt IE 7 ]>
+		<script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+		<script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+	<![endif]-->
+
+</body>
+</html>

@@ -18,9 +18,9 @@ Event = db.model('Event');
 var upsert_entry = function(ngo, entry, callback){
   Step(
     function is_event_in_db(){
-      Event.where('title', entry.heading).find(this);
+      Event.where('title', entry.title).find(this);
     },
-    function insert_or_skip(err, result){
+    function insert_or_skip(err, results){
       if (err){
         throw err;
       } else {
@@ -28,20 +28,15 @@ var upsert_entry = function(ngo, entry, callback){
           callback(null, true);
         } else { // insert the record into the database
           new_event = new Event({
-            title: entry.heading
+            title: entry.title,
+            startDate: new Date(12,11,10)
           });
           new_event.save(this);
-          // callback(null, false);
         }
       }
-      // console.log(err);
-      // console.log(result);
-      callback(null, true);
-      // if(err){
-      //         throw err;
-      //       } else {
-      //         callback(true);
-      //       }
+    },
+    function end_function(err, results){
+      callback(err, results);
     }
   );
 };
@@ -90,7 +85,7 @@ var process_site = function(ngo, callback){
   );
 };
 
-var sync_with_scraperwiki = function(){
+var sync_with_scraperwiki = function(callback){
   var ngos = null;
   Step(
     function load_scraper(){
@@ -110,8 +105,7 @@ var sync_with_scraperwiki = function(){
       if (err){
         throw err;
       }
-      mongoose.connection.close();
-      process.exit();
+      callback(err, response);
     }
   )
 };
@@ -158,7 +152,15 @@ var sync_with_icals = function(){
         if(err){
           throw err;
         }
-        console.log(results);
+        // console.log(results);
+        // mongoose.connection.close();
+        // process.exit();
+        sync_with_scraperwiki(this);
+      },
+      function close(err, results){
+        if(err){
+          throw err;
+        }
         mongoose.connection.close();
         process.exit();
       }

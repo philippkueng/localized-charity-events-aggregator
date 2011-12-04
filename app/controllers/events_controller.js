@@ -121,6 +121,8 @@ action(function search() {
                 collection.find(
                     mongoQuery(req.query),
                     {limit: 100}
+                ).sort(
+                    {startDate: 1}
                 ).toArray(function(error, events) {
                     send({
                         'query': searchDescription(req.query),

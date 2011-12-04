@@ -12,13 +12,13 @@ The service developed in this work is more important that the content itself.
 
 **Background**
 
-This project was initiated at [RHoK Switzerland](http://www.rhokch.org) between December the 3rd and 4th by [@ikr](http://twitter.com/ikr), [@bennyschudel](http://twitter.com/bennyschudel), [@hendrik_ch](http://twitter.com/hendrik_ch), Olivier Piron, Simon Hefti and [@philippkueng](http://twitter.com/philippkueng).
+This project was initiated at [RHoK Switzerland](http://www.rhokch.org) between December the 3rd and 4th by [@ikr](http://twitter.com/ikr), [@bennyschudel](http://twitter.com/bennyschudel), [@henrik_ch](http://twitter.com/henrik_ch), Olivier Piron, Simon Hefti and [@philippkueng](http://twitter.com/philippkueng).
 
 **Additional Resources**
 
-[Problem Definition on rhok.org](http://rhok.org/....)
+[Problem Definition on rhok.org](http://www.rhok.org/problems/aggregator-communitycharity-events-based-locality)
 [Our proposed solution to the problem](http://www.rhok.org/solutions/charity-event-aggregator)
-[Slides used for presenting the project](http://....)
+[Slides used for presenting the project](https://docs.google.com/present/edit?id=0Ac1CjBkan4BTZDRoMjUzZF8xNWRyZ254Z2hu)
 
 ## Setup
 
@@ -44,23 +44,25 @@ Installing Node.js and Dependencies
 Install MongoDB
 
     $ sudo vim /etc/apt/sources.list
-    -> insert ... at the top and save with :wq
-    $ ... add the key 
+    -> insert `deb http://downloads-distro.mongodb.org/repo/debian-sysvinit dist 10gen` at the top and save with :wq
+    $ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10
     $ sudo apt-get update
     $ sudo apt-get install mongodb-10gen
     
 Install Ruby and Dependencies
 
-    $ ... install rvm
+    $ bash < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer )
+    $ rvm install 1.9.2
+    $ rvm use 1.9.2
     $ gem install ruby-hmac
     
 Copy actual project code
 
-    $ git clone git://github.com/philippkueng/...
+    $ git clone git://github.com/philippkueng/localized-charity-events-aggregator.git
     $ cd ...
     $ npm install -l
     $ railway server
-
+    
 
 ## License
 

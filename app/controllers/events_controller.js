@@ -75,14 +75,48 @@ action(function destroy() {
     });
 });
 
-var mongoQuery = function (searchParams) {
-    var queryRegExp = new RegExp(searchParams.q, 'i');
+var mongoTextQuery = function (searchParams) {
+    var queryRegExp = null;
+
+    if (!searchParams.q) return null;
+
+    queryRegExp = new RegExp(searchParams.q, 'i');
 
     return {$or: [
         {title: {$regex: queryRegExp}},
         {description: {$regex: queryRegExp}},
         {location: {$regex: queryRegExp}}
     ]};
+};
+
+var mongoMonthQuery = function (searchParams) {
+    var year = 1979, month = 1;
+
+    if (!searchParams.year || !searchParams.month) return null;
+
+    try {
+        year = parseInt(searchParams.year, 10);
+        month = parseInt(searchParams.month, 10);
+    }
+    catch(e) {
+        return null;
+    }
+
+    return {$and: [
+        {startDate: {$gte: new Date(year, month - 1, 1, 0, 0, 0, 0)}},
+        {startDate: {$lt: new Date(year, month, 1, 0, 0, 0, 0)}},
+    ]};
+};
+
+var mongoQuery = function (searchParams) {
+    var textQuery = mongoTextQuery(searchParams),
+        monthQuery = mongoMonthQuery(searchParams);
+
+    if (textQuery && monthQuery) {
+        return {$and: [textQuery, monthQuery]};
+    }
+
+    return textQuery || monthQuery;
 };
 
 var areSearchParamsActionable = function (searchParams) {
@@ -97,7 +131,6 @@ action(function search() {
     if (areSearchParamsActionable(req.query)) {
         (function () {
             var mongodb = require('mongodb');
-
 
             new mongodb.Db(
                 'localized-charity-events-aggregator-dev',

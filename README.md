@@ -55,6 +55,7 @@ Install Ruby and Dependencies
     $ rvm install 1.9.2
     $ rvm use 1.9.2
     $ gem install ruby-hmac
+    $ gem install icalendar
     
 Copy actual project code
 

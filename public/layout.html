@@ -31,20 +31,20 @@
 		</div>
 
 		<div id="calendarNavigation" class="row">
-			<div class="span4"><a href="" class="year">2012</a><a href="" class="previous">&laquo;</a><a href="" class="next">&raquo;</a></div>
+			<div class="span4"><a href="" class="year">2011</a><a href="" class="previous">&laquo;</a><a href="" class="next">&raquo;</a></div>
 			<ul class="span12">
 				<li class="past"><a href="">JAN</a></li>
 				<li class="past"><a href="">FEB</a></li>
 				<li class="past"><a href="">MAR</a></li>
-				<li class="future active"><a href="">APR</a></li>
-				<li class="future"><a href="">MAY</a></li>
-				<li class="future"><a href="">JUN</a></li>
-				<li class="future"><a href="">JUL</a></li>
-				<li class="future"><a href="">AUG</a></li>
-				<li class="future"><a href="">SEP</a></li>
-				<li class="future"><a href="">OCT</a></li>
-				<li class="future"><a href="">NOV</a></li>
-				<li class="future"><a href="">DEC</a></li>
+				<li class="past"><a href="">APR</a></li>
+				<li class="past"><a href="">MAY</a></li>
+				<li class="past"><a href="">JUN</a></li>
+				<li class="past"><a href="">JUL</a></li>
+				<li class="past"><a href="">AUG</a></li>
+				<li class="past"><a href="">SEP</a></li>
+				<li class="past"><a href="">OCT</a></li>
+				<li class="past"><a href="">NOV</a></li>
+				<li class="future active"><a href="">DEC</a></li>
 			</ul>
 		</div>
 
@@ -216,7 +216,11 @@
 
 		$(document).ready(function () {
 			$.getJSON('/search', {year: 2011, month: 12}, function (data) {
-				$('#tmpl-events').tmpl(data).appendTo("#calendar");
+				for (var i = 0; i < data.events.length; i++) {
+					data.events[i].startDate = new Date(Date.parse(data.events[i].startDate));
+				}
+
+				$('#tmpl-events').tmpl(data).prependTo("#calendar");
 			});
 		});
 	</script>
@@ -237,12 +241,12 @@
 						<ul>
 							<li>
 								<div class="calendarIcon">
-									<span class="day">${startDate.day}</span><span class="month">${startDate.month + 1}</span>
+									<span class="day">${startDate.getDate()}</span><span class="month">DEC</span>
 								</div>
 							</li>
 							<li>
 								<div class="calendarTime">
-									<div class="tag">${startDate.hour}:${startDate.minute}</div>
+									<div class="tag">${startDate.getHours()}:00</div>
 								</div>
 							</li>
 						</ul>

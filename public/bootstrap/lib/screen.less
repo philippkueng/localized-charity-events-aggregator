@@ -23,6 +23,8 @@ li {
 	color: inherit;
 }
 
+.hidden { display: none; }
+
 #calendarSearch {
 	margin-top: 20px;
 	> div {
@@ -128,38 +130,47 @@ li {
 	}
 }
 
+#calendarMap {
+	width: 100%;
+	height: 360px;
+	border-top: 1px solid lighten(@black, 70%);
+}
+
 #calendar {
 	list-style-type: none;
 	margin-left: 0;
 	border-top: 1px solid darken(@white, 25%);
-	> li {
+	.event {
 		.border-radius(@border-radius);
 		.clearfix();
-		#gradient > .vertical(@white0, fadein(@white0, 40%));
-		background-color: @white0;
 		margin-bottom: 30px;
 		box-shadow: 0 0 0 1px lighten(@black, 70%),
 					0 2px 0 0 lighten(@black, 70%);
-		> div {
-			float: left;
-			&.calendarDate {
-				margin-left: 0;
-				ul {
-					list-style-type: none;
-					li {
-						margin-bottom: 10px;
-						.calendarIcon,
-						.calendarTime {
-							margin-left: 100px;
+		> .row {
+			#gradient > .vertical(@white0, fadein(@white0, 40%));
+			background-color: @white0;
+			margin-left: 0;
+			> div {
+				float: left;
+				&.calendarDate {
+					margin-left: 0;
+					ul {
+						list-style-type: none;
+						li {
+							margin-bottom: 10px;
+							.calendarIcon,
+							.calendarTime {
+								margin-left: 100px;
+							}
 						}
 					}
 				}
-			}
-			&.calendarItem {
-				margin-left: 20px;
-			}
-			&.calendarMap {
-				margin-top: 20px;
+				&.calendarItem {
+					margin-left: 20px;
+					padding-bottom: 20px;
+				}
+				&.calendarMap {
+				}
 			}
 		}
 	}
@@ -197,8 +208,6 @@ li {
 }
 
 .calendarMap {
-	height: 360px;
-	border-top: 1px solid lighten(@black, 70%);
 }
 
 .calendarIcon {

@@ -48,66 +48,81 @@
 			</ul>
 		</div>
 
-
 		<ul id="calendar" class="row">
-			<li>
-				<div class="calendarDate span4">
-					<ul>
-						<li>
-							<div class="calendarIcon timespan">
-								<span class="day">28</span><span class="month">APR</span>
-								<span class="day">03</span><span class="month">MAY</span>
-							</div>
-						</li>
-						<li>
-							<div class="calendarTime">
-								<div class="tag">14:00 - 20:00</div>
-							</div>
-						</li>
-					</ul>
-				</div>
-				<div class="calendarItem span11">
-					<h1>This is the title of the charity event</h1>
-					<div class="description">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-					</div>
-					<div class="address span5">
+			<li id="event-123" class="event event-123" data-event-id="123">
+				<div class="row">
+					<div class="calendarDate span4">
 						<ul>
-							<li>Organisator</li>
-							<li>Room 123</li>
-							<li>Street with a long name</li>
-							<li>CH-8000 Zurich</li>
-							<li><button class="btn">Show map</button></li>
+							<li>
+								<div class="calendarIcon timespan">
+									<span class="day">28</span><span class="month">APR</span>
+									<span class="day">03</span><span class="month">MAY</span>
+								</div>
+							</li>
+							<li>
+								<div class="calendarTime">
+									<div class="tag">14:00 - 20:00</div>
+								</div>
+							</li>
 						</ul>
 					</div>
-					<ul class="links span6">
-						<li class="link"><a href="http://www.google.com" target="_blank">http://www.google.com</a></li>
-						<li class="link"><a href="http://www.link_to_another_site.com" target="_blank">http://www.link_to_another_site.com</a></li>
-					</ul>
-				</div>
-				<div id="calendarMap" class="span16 calendarMap"></div>
-			</li>
-			<li>
-				<div class="calendarDate span4">
-					<ul>
-						<li>
-							<div class="calendarIcon">
-								<span class="day">30</span><span class="month">APR</span>
-							</div>
-						</li>
-						<li>
-							<div class="calendarTime">
-								<div class="tag">14:00</div>
-							</div>
-						</li>
-					</ul>
-				</div>
-				<div class="calendarItem span12">
-					<h1>This is the title of the charity event</h1>
-					<div class="description">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+					<div class="calendarItem span11">
+						<h1>This is the title of the charity event</h1>
+						<div class="description">
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+						</div>
+						<div class="address span5">
+							<ul>
+								<li>Organisator</li>
+								<li>Room 123</li>
+								<li>Street with a long name</li>
+								<li>CH-8000 Zurich</li>
+								<li><button class="btn">Show map</button></li>
+							</ul>
+						</div>
+						<ul class="links span6">
+							<li class="link"><a href="http://www.google.com" target="_blank">http://www.google.com</a></li>
+							<li class="link"><a href="http://www.link_to_another_site.com" target="_blank">http://www.link_to_another_site.com</a></li>
+						</ul>
 					</div>
 				</div>
+				<div class="calendarMap span16" data-address="Zurich, Hardstrasse 219">
+					<div id="calendarMap" class="hidden"></div>
+				</div>
+			</li>
+			<li id="event-253" class="event event-253" data-event-id="253">
+				<div class="row">
+					<div class="calendarDate span4">
+						<ul>
+							<li>
+								<div class="calendarIcon">
+									<span class="day">30</span><span class="month">APR</span>
+								</div>
+							</li>
+							<li>
+								<div class="calendarTime">
+									<div class="tag">14:00</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="calendarItem span12">
+						<h1>This is the title of the charity event</h1>
+						<div class="description">
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+						</div>
+						<div class="address span5">
+							<ul>
+								<li>Organisator</li>
+								<li>Room 123</li>
+								<li>Street with a long name</li>
+								<li>CH-8000 Zurich</li>
+								<li><button class="btn">Show map</button></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="calendarMap span16" data-address="Bern, Bahnhofsplatz"></div>
 			</li>
 		</ul>
 
@@ -122,13 +137,13 @@
 		$(window).load(function() {
 			var GoogleMap = function(options) {
 				var geocoder = new google.maps.Geocoder(),
-					map = new google.maps.Map(document.getElementById("calendarMap"), $.extend({
+					map = new google.maps.Map(document.getElementById('calendarMap'), $.extend({
 							zoom: 16,
 							mapTypeId: google.maps.MapTypeId.ROADMAP
 					}, options));
 
 				return {
-					search: function(query) {
+					search: function(query, cback) {
 						geocoder.geocode({'address': query}, function(results, status) {
 							if (status == google.maps.GeocoderStatus.OK) {
 								map.setCenter(results[0].geometry.location);
@@ -136,6 +151,10 @@
 									map: map,
 									position: results[0].geometry.location
 								});
+
+								if (cback && cback.call) {
+									cback.call(this, arguments);
+								}
 							} else {
 								console.error("Geocode was not successful for the following reason: " + status);
 							}
@@ -144,8 +163,49 @@
 				};
 			};
 
-			var gMap = new GoogleMap();
-			gMap.search('Zurich, Hardstrasse 219');
+			var Main = (function($, undefined) {
+				var Main = function() {
+					var self = this,
+						$calendar = $('#calendar'),
+						$calendarMap = $('#calendarMap'),
+						gMap;
+
+					this.init = function() {
+						gMap = new GoogleMap();
+
+						$calendar.find('.address .btn').click(function(evt) {
+							var $this = $(this),
+								$event = $this.closest('li.event'),
+								eventId = $event.data('event-id');
+
+							self.showMap(eventId);
+						});
+					};
+
+					this.showMap = function(eventId) {
+						var $item = $('#event-'+eventId),
+							$map = $item.find('.calendarMap'),
+							address = $map.data('address');
+
+						$calendarMap.parent().slideUp(400, function(evt) {
+							$calendarMap.show();
+							$map
+								.append($calendarMap.detach())
+								.slideDown(400, function(evt) {
+									gMap.search(address, function() {
+
+									});
+								});
+						});
+
+					}
+
+					this.init();
+				};
+
+				return new Main();
+			})(jQuery);
+
 		});
 	</script>
 

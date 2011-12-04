@@ -2489,6 +2489,9 @@ ul {
 li {
   color: inherit;
 }
+.hidden {
+  display: none;
+}
 #calendarSearch {
   margin-top: 20px;
 }
@@ -2583,16 +2586,33 @@ li {
 #calendarNavigation > ul > li.active a {
   color: #049cdb;
 }
+#calendarMap {
+  width: 100%;
+  height: 360px;
+  border-top: 1px solid #b3b3b3;
+}
 #calendar {
   list-style-type: none;
   margin-left: 0;
   border-top: 1px solid #bfbfbf;
 }
-#calendar > li {
+#calendar .event {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 2px;
   zoom: 1;
+  margin-bottom: 30px;
+  box-shadow: 0 0 0 1px #b3b3b3, 0 2px 0 0 #b3b3b3;
+}
+#calendar .event:before, #calendar .event:after {
+  display: table;
+  content: "";
+  zoom: 1;
+}
+#calendar .event:after {
+  clear: both;
+}
+#calendar .event > .row {
   background-color: rgba(255, 255, 255, 0.4);
   background-repeat: repeat-x;
   background-image: -khtml-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(rgba(255, 255, 255, 0.4)));
@@ -2604,37 +2624,26 @@ li {
   background-image: linear-gradient(top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.4));
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(255, 255, 255, 0)', endColorstr='rgba(255, 255, 255, 0.4)', GradientType=0);
   background-color: rgba(255, 255, 255, 0);
-  margin-bottom: 30px;
-  box-shadow: 0 0 0 1px #b3b3b3, 0 2px 0 0 #b3b3b3;
-}
-#calendar > li:before, #calendar > li:after {
-  display: table;
-  content: "";
-  zoom: 1;
-}
-#calendar > li:after {
-  clear: both;
-}
-#calendar > li > div {
-  float: left;
-}
-#calendar > li > div.calendarDate {
   margin-left: 0;
 }
-#calendar > li > div.calendarDate ul {
+#calendar .event > .row > div {
+  float: left;
+}
+#calendar .event > .row > div.calendarDate {
+  margin-left: 0;
+}
+#calendar .event > .row > div.calendarDate ul {
   list-style-type: none;
 }
-#calendar > li > div.calendarDate ul li {
+#calendar .event > .row > div.calendarDate ul li {
   margin-bottom: 10px;
 }
-#calendar > li > div.calendarDate ul li .calendarIcon, #calendar > li > div.calendarDate ul li .calendarTime {
+#calendar .event > .row > div.calendarDate ul li .calendarIcon, #calendar .event > .row > div.calendarDate ul li .calendarTime {
   margin-left: 100px;
 }
-#calendar > li > div.calendarItem {
+#calendar .event > .row > div.calendarItem {
   margin-left: 20px;
-}
-#calendar > li > div.calendarMap {
-  margin-top: 20px;
+  padding-bottom: 20px;
 }
 .calendarItem > div, .calendarItem > ul {
   float: left;
@@ -2661,10 +2670,6 @@ li {
 }
 .calendarItem .links li {
   margin-bottom: 4px;
-}
-.calendarMap {
-  height: 360px;
-  border-top: 1px solid #b3b3b3;
 }
 .calendarIcon {
   -webkit-border-radius: 2px;

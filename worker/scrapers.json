@@ -1,4 +1,8 @@
 [{
-    "scraperwiki_name": "greenpeace_switzerland_agenda_1",
-    "scraped_from": "http://www.greenpeace.org/switzerland/de/Aktiv-werden/Agenda/"
+    "scraperwiki_name": "rhok",
+    "scraped_from": "http://www.volontaireslausannois.ch/html/index.php?c=15"
+},
+{
+  "scraperwiki_name": "rhok-tyhafan",
+  "scraped_from": "http://www.tyhafan.org/our-events/"
 }]

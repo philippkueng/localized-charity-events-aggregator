@@ -1,3 +1,5 @@
+@border-radius: 2px;
+
 body {
 	#font > .serif();
 	text-shadow: 0 1px 0 darken(@white, 10%);
@@ -13,6 +15,12 @@ h1 {
 p {
 	font-size: 16px;
 	line-height: 20px;
+}
+ul {
+	margin-left: 20px;
+}
+li {
+	color: inherit;
 }
 
 #calendarSearch {
@@ -35,30 +43,31 @@ p {
 		height: 50px;
 		border-bottom: 2px solid lighten(@black, 40%);
 		box-shadow: 0 1px 0 0 darken(@white, 10%);
-		&.year {
-			p {
-				position: absolute;
-				color: lighten(@black, 30%);
-				font-size: 2.4em;
-				bottom: -1px;
-				vertical-align: middle;
-			}
+		&:first-child {
 			a {
-				.border-radius(50%);
 				position: absolute;
-				color: @white;
-				background-color: lighten(@black, 30%);
-				display: inline-block;
-				width: 18px;
-				height: 18px;
-				font-size: 1em;
-				line-height: 16px;
-				text-align: center;
-				text-shadow: none;
-				box-shadow: 0 1px 0 0 darken(@white, 10%);
+				&.year {
+					bottom: 4px;
+					font-size: 40px;
+					line-height: 15px;
+				}
+				&.previous,
+				&.next {
+					.border-radius(50%);
+					bottom: 4px;
+					color: @white;
+					display: inline-block;
+					box-shadow: 0 1px 0 0 darken(@white, 10%);
+					background-color: lighten(@black, 30%);
+					width: 18px;
+					height: 18px;
+					font-size: 1em;
+					line-height: 16px;
+					text-align: center;
+					text-shadow: none;
+				}
 				&.previous {
 					right: 22px;
-					bottom: 4px;
 				}
 				&.next {
 					right: 0;
@@ -122,50 +131,135 @@ p {
 #calendar {
 	list-style-type: none;
 	margin-left: 0;
+	border-top: 1px solid darken(@white, 25%);
 	> li {
+		.border-radius(@border-radius);
 		.clearfix();
-		padding-bottom: 30px;
-		border-top: 1px solid darken(@white, 25%);
-		background-image: -moz-linear-gradient(bottom, hsla(0,0%,100%,0), hsla(0,0%,100%,0.4));
+		#gradient > .vertical(@white0, fadein(@white0, 40%));
+		background-color: @white0;
+		margin-bottom: 30px;
+		box-shadow: 0 0 0 1px lighten(@black, 70%),
+					0 2px 0 0 lighten(@black, 70%);
 		> div {
 			float: left;
-			margin-left: 20px;
-			&:first-child {
+			&.calendarDate {
 				margin-left: 0;
-				text-align: right;
+				ul {
+					list-style-type: none;
+					li {
+						margin-bottom: 10px;
+						.calendarIcon,
+						.calendarTime {
+							margin-left: 100px;
+						}
+					}
+				}
+			}
+			&.calendarItem {
+				margin-left: 20px;
+			}
+			&.calendarMap {
+				margin-top: 20px;
 			}
 		}
 	}
 }
 
+.calendarItem {
+	> div,
+	> ul {
+		float: left;
+	}
+	.description {
+		margin-bottom: 20px;
+	}
+	.address {
+		.border-radius(@border-radius);
+		box-shadow: 0 0 0 1px lighten(@black, 70%),
+					0 2px 0 0 lighten(@black, 70%);
+		background-color: darken(@white, 10%);
+		> ul {
+			list-style-type: none;
+			margin: 8px 10px;
+			li {
+				&:last-child {
+					margin-top: 10px;
+				}
+			}
+		}
+	}
+	.links {
+		list-style-type: none;
+		li {
+			margin-bottom: 4px;
+		}
+	}
+}
+
+.calendarMap {
+	height: 360px;
+	border-top: 1px solid lighten(@black, 70%);
+}
+
 .calendarIcon {
-	.border-radius(4px);
+	.border-radius(@border-radius);
 	position: relative;
-	display: inline-block;
+	right: 0;
 	font-size: 40px;
-	padding: 12px 4px 4px 4px;
+	padding: 14px 0 10px 0;
 	margin-top: -12px;
 	background: darken(@white, 10%) url(img/noise.png) top left repeat;
 	color: lighten(@black, 30%);
-	border: 1px solid lighten(@black, 60%);
-	box-shadow: 0 2px 0 0 lighten(@black, 60%);
+	box-shadow: 0 0 0 1px lighten(@black, 70%),
+				0 2px 0 0 lighten(@black, 70%);
 	text-shadow: 0 1px 0 @white;
-	min-width: 46px;
-	height: 50px;
-	line-height: 52px;
-	.clip {
-		.border-radius(2px);
+	line-height: normal;
+	text-align: center;
+	width: 100px;
+	&.timespan {
+		line-height: 26px;
+		padding-top: 24px;
+		padding-bottom: 12px;
+	}
+	.month {
+		font-size: 16px;
+		color: lighten(@black, 40%);
+	}
+	&:before,
+	&:after {
+		.border-radius(@border-radius / 2);
+		content: "";
 		position: absolute;
-		top: -6px;
+		top: -5px;
 		width: 5px;
 		height: 10px;
 		background-color: lighten(@black, 80%);
-		border: 1px solid lighten(@black, 60%);
-		&:first-child {
-			left: 10px;
-		}
-		&:last-child {
-			right: 10px;
-		}
+		box-shadow: 0 0 0 1px lighten(@black, 60%);
 	}
+	&:before {
+		left: 10px;
+	}
+	&:after {
+		right: 10px;
+	}
+}
+
+.calendarTime {
+	width: 100px;
+	text-align: center;
+}
+
+.tag {
+	.border-radius(@border-radius);
+	background-color: darken(@white, 20%);
+	padding: 2px 5px 4px 5px;
+	color: lighten(@black, 40%);
+}
+
+.link {
+	.border-radius(@border-radius);
+	background-color: darken(@white, 15%);
+	padding: 2px 5px;
+	color: lighten(@black, 40%);
+	box-shadow: 0 1px 0 0 fadein(@black0, 15%);
 }

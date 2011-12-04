@@ -2483,6 +2483,12 @@ p {
   font-size: 16px;
   line-height: 20px;
 }
+ul {
+  margin-left: 20px;
+}
+li {
+  color: inherit;
+}
 #calendarSearch {
   margin-top: 20px;
 }
@@ -2500,34 +2506,34 @@ p {
   border-bottom: 2px solid #666666;
   box-shadow: 0 1px 0 0 #e6e6e6;
 }
-#calendarNavigation > div.year p {
+#calendarNavigation > div:first-child a {
   position: absolute;
-  color: #4d4d4d;
-  font-size: 2.4em;
-  bottom: -1px;
-  vertical-align: middle;
 }
-#calendarNavigation > div.year a {
+#calendarNavigation > div:first-child a.year {
+  bottom: 4px;
+  font-size: 40px;
+  line-height: 15px;
+}
+#calendarNavigation > div:first-child a.previous, #calendarNavigation > div:first-child a.next {
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
-  position: absolute;
+  bottom: 4px;
   color: #ffffff;
-  background-color: #4d4d4d;
   display: inline-block;
+  box-shadow: 0 1px 0 0 #e6e6e6;
+  background-color: #4d4d4d;
   width: 18px;
   height: 18px;
   font-size: 1em;
   line-height: 16px;
   text-align: center;
   text-shadow: none;
-  box-shadow: 0 1px 0 0 #e6e6e6;
 }
-#calendarNavigation > div.year a.previous {
+#calendarNavigation > div:first-child a.previous {
   right: 22px;
-  bottom: 4px;
 }
-#calendarNavigation > div.year a.next {
+#calendarNavigation > div:first-child a.next {
   right: 0;
   bottom: 4px;
 }
@@ -2559,10 +2565,10 @@ p {
   margin-left: 0;
 }
 #calendarNavigation > ul > li:hover.past, #calendarNavigation > ul > li:hover.future {
-  border-bottom-color: #62bc62;
+  border-bottom-color: #17b8fb;
 }
 #calendarNavigation > ul > li:hover.past a, #calendarNavigation > ul > li:hover.future a {
-  color: #46a546;
+  color: #049cdb;
 }
 #calendarNavigation > ul > li.past {
   border-bottom-color: #b3b3b3;
@@ -2571,21 +2577,35 @@ p {
   color: #999999;
 }
 #calendarNavigation > ul > li.active {
-  border-bottom-color: #62bc62;
+  border-bottom-color: #17b8fb;
   border-bottom-width: 4px;
 }
 #calendarNavigation > ul > li.active a {
-  color: #46a546;
+  color: #049cdb;
 }
 #calendar {
   list-style-type: none;
   margin-left: 0;
+  border-top: 1px solid #bfbfbf;
 }
 #calendar > li {
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
   zoom: 1;
-  padding-bottom: 30px;
-  border-top: 1px solid #bfbfbf;
-  background-image: -moz-linear-gradient(bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.4));
+  background-color: rgba(255, 255, 255, 0.4);
+  background-repeat: repeat-x;
+  background-image: -khtml-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(rgba(255, 255, 255, 0.4)));
+  background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.4));
+  background-image: -ms-linear-gradient(top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.4));
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(100%, rgba(255, 255, 255, 0.4)));
+  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.4));
+  background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.4));
+  background-image: linear-gradient(top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.4));
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(255, 255, 255, 0)', endColorstr='rgba(255, 255, 255, 0.4)', GradientType=0);
+  background-color: rgba(255, 255, 255, 0);
+  margin-bottom: 30px;
+  box-shadow: 0 0 0 1px #b3b3b3, 0 2px 0 0 #b3b3b3;
 }
 #calendar > li:before, #calendar > li:after {
   display: table;
@@ -2597,44 +2617,117 @@ p {
 }
 #calendar > li > div {
   float: left;
+}
+#calendar > li > div.calendarDate {
+  margin-left: 0;
+}
+#calendar > li > div.calendarDate ul {
+  list-style-type: none;
+}
+#calendar > li > div.calendarDate ul li {
+  margin-bottom: 10px;
+}
+#calendar > li > div.calendarDate ul li .calendarIcon, #calendar > li > div.calendarDate ul li .calendarTime {
+  margin-left: 100px;
+}
+#calendar > li > div.calendarItem {
   margin-left: 20px;
 }
-#calendar > li > div:first-child {
-  margin-left: 0;
-  text-align: right;
+#calendar > li > div.calendarMap {
+  margin-top: 20px;
 }
-.calendarIcon {
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  position: relative;
-  display: inline-block;
-  font-size: 40px;
-  padding: 12px 4px 4px 4px;
-  margin-top: -12px;
-  background: #e6e6e6 url(img/noise.png) top left repeat;
-  color: #4d4d4d;
-  border: 1px solid #999999;
-  box-shadow: 0 2px 0 0 #999999;
-  text-shadow: 0 1px 0 #ffffff;
-  min-width: 46px;
-  height: 50px;
-  line-height: 52px;
+.calendarItem > div, .calendarItem > ul {
+  float: left;
 }
-.calendarIcon .clip {
+.calendarItem .description {
+  margin-bottom: 20px;
+}
+.calendarItem .address {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 2px;
+  box-shadow: 0 0 0 1px #b3b3b3, 0 2px 0 0 #b3b3b3;
+  background-color: #e6e6e6;
+}
+.calendarItem .address > ul {
+  list-style-type: none;
+  margin: 8px 10px;
+}
+.calendarItem .address > ul li:last-child {
+  margin-top: 10px;
+}
+.calendarItem .links {
+  list-style-type: none;
+}
+.calendarItem .links li {
+  margin-bottom: 4px;
+}
+.calendarMap {
+  height: 360px;
+  border-top: 1px solid #b3b3b3;
+}
+.calendarIcon {
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  position: relative;
+  right: 0;
+  font-size: 40px;
+  padding: 14px 0 10px 0;
+  margin-top: -12px;
+  background: #e6e6e6 url(img/noise.png) top left repeat;
+  color: #4d4d4d;
+  box-shadow: 0 0 0 1px #b3b3b3, 0 2px 0 0 #b3b3b3;
+  text-shadow: 0 1px 0 #ffffff;
+  line-height: normal;
+  text-align: center;
+  width: 100px;
+}
+.calendarIcon.timespan {
+  line-height: 26px;
+  padding-top: 24px;
+  padding-bottom: 12px;
+}
+.calendarIcon .month {
+  font-size: 16px;
+  color: #666666;
+}
+.calendarIcon:before, .calendarIcon:after {
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
+  content: "";
   position: absolute;
-  top: -6px;
+  top: -5px;
   width: 5px;
   height: 10px;
   background-color: #cccccc;
-  border: 1px solid #999999;
+  box-shadow: 0 0 0 1px #999999;
 }
-.calendarIcon .clip:first-child {
+.calendarIcon:before {
   left: 10px;
 }
-.calendarIcon .clip:last-child {
+.calendarIcon:after {
   right: 10px;
+}
+.calendarTime {
+  width: 100px;
+  text-align: center;
+}
+.tag {
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  background-color: #cccccc;
+  padding: 2px 5px 4px 5px;
+  color: #666666;
+}
+.link {
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  background-color: #d9d9d9;
+  padding: 2px 5px;
+  color: #666666;
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.15);
 }

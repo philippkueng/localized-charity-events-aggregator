@@ -24,18 +24,21 @@ action(function create() {
 });
 
 action(function index() {
-    var mongoose = require('mongoose'),
-        db = mongoose.connect('mongodb://localhost/localized-charity-events-aggregator-dev'),
-        Event = db.model('Event'),
-        events = [];
+    var events = [];
 
     this.title = 'Events index';
 
-    Event.find({}).asc('startDate').exec({}, function (err, events) {
-        render({
-            events: events
-        });
-    });
+    require(__dirname + '/db/mongoose_schema')
+        .Event
+        .find({})
+        .asc('startDate')
+        .exec(
+            {},
+
+            function (err, events) {
+                render({events: events});
+            }
+        );
 });
 
 action(function show() {
@@ -70,6 +73,106 @@ action(function destroy() {
         }
         send("'" + path_to.events + "'");
     });
+});
+
+var mongoTextQuery = function (searchParams) {
+    var queryRegExp = null;
+
+    if (!searchParams.q) return null;
+
+    queryRegExp = new RegExp(searchParams.q, 'i');
+
+    return {$or: [
+        {title: {$regex: queryRegExp}},
+        {description: {$regex: queryRegExp}},
+        {location: {$regex: queryRegExp}}
+    ]};
+};
+
+var mongoMonthQuery = function (searchParams) {
+    var year = 1979, month = 1;
+
+    if (!searchParams.year || !searchParams.month) return null;
+
+    try {
+        year = parseInt(searchParams.year, 10);
+        month = parseInt(searchParams.month, 10);
+    }
+    catch(e) {
+        return null;
+    }
+
+    return {$and: [
+        {startDate: {$gte: new Date(year, month - 1, 1, 0, 0, 0, 0)}},
+        {startDate: {$lt: new Date(year, month, 1, 0, 0, 0, 0)}},
+    ]};
+};
+
+var mongoQuery = function (searchParams) {
+    var textQuery = mongoTextQuery(searchParams),
+        monthQuery = mongoMonthQuery(searchParams);
+
+    if (textQuery && monthQuery) {
+        return {$and: [textQuery, monthQuery]};
+    }
+
+    return textQuery || monthQuery;
+};
+
+var areSearchParamsActionable = function (searchParams) {
+    return (searchParams.q || (searchParams.year && searchParams.month));
+};
+
+var searchDescription = function (searchParams) {
+    return {text: searchParams.q, year: searchParams.year, month: searchParams.month};
+};
+
+action(function search() {
+    if (areSearchParamsActionable(req.query)) {
+        (function () {
+            var mongodb = require('mongodb');
+
+            new mongodb.Db(
+                'localized-charity-events-aggregator-dev',
+                new mongodb.Server('127.0.0.1', 27017, {}),
+                {}
+            ).open(function (error, client) {
+                var collection = null;
+
+                if (error) {
+                    send({
+                        'query': searchDescription(req.query),
+                        'events': [],
+                        'error': error
+                    });
+
+                    return;
+                }
+
+                collection = new mongodb.Collection(client, 'events');
+
+                collection.find(
+                    mongoQuery(req.query),
+                    {limit: 100}
+                ).sort(
+                    {startDate: 1}
+                ).toArray(function(error, events) {
+                    send({
+                        'query': searchDescription(req.query),
+                        'events': events,
+                        'error': error
+                    });
+                });
+            });
+        }())
+    }
+    else {
+        send({
+            'query': searchDescription(req.query),
+            'events': [],
+            'error': null
+        });
+    }
 });
 
 function loadEvent() {

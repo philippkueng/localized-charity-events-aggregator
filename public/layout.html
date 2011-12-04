@@ -220,7 +220,7 @@
 					data.events[i].startDate = new Date(Date.parse(data.events[i].startDate));
 				}
 
-				$('#tmpl-events').tmpl(data).appendTo("#calendar");
+				$('#tmpl-events').tmpl(data).prependTo("#calendar");
 			});
 		});
 	</script>
@@ -241,7 +241,7 @@
 						<ul>
 							<li>
 								<div class="calendarIcon">
-									<span class="day">${startDate.getDate()}</span><span class="month">${startDate.getMonth() + 1}</span>
+									<span class="day">${startDate.getDate()}</span><span class="month">DEC</span>
 								</div>
 							</li>
 							<li>

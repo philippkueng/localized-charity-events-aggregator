@@ -205,7 +205,12 @@
 
 				return new Main();
 			})(jQuery);
+		});
 
+		$(document).ready(function () {
+			$.getJSON('/search', {year: 2011, month: 12}, function (data) {
+				$('#tmpl-events').tmpl(data).appendTo("#calendar");
+			});
 		});
 	</script>
 
@@ -216,11 +221,53 @@
 		});
 	</script>
 
+	<script src="http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+
+	<script id="tmpl-event" type="text/x-jquery-tmpl">
+	    <li id="event-${_id}" class="event event-${_id}" data-event-id="${_id}">
+			<div class="row">
+				<div class="calendarDate span4">
+						<ul>
+							<li>
+								<div class="calendarIcon">
+									<span class="day">${startDate.day}</span><span class="month">${startDate.month + 1}</span>
+								</div>
+							</li>
+							<li>
+								<div class="calendarTime">
+									<div class="tag">${startDate.hour}:${startDate.minute}</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				<div class="calendarItem span11">
+					<h1>${title}</h1>
+					<div class="description">
+						<p>
+							${description}
+						</p>
+					</div>
+					<div class="address span5">
+						<ul>
+							${location}
+							<li><button class="btn">Show map</button></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="calendarMap span16" data-address="${location}">
+				<div id="calendarMap" class="hidden"></div>
+			</div>
+		</li>
+	</script>
+
+	<script id="tmpl-events" type="text/x-jquery-tmpl">
+		{{tmpl(events) "#tmpl-event"}}
+	</script>
 
 	<!--[if lt IE 7 ]>
 		<script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
 		<script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
 	<![endif]-->
-
 </body>
 </html>

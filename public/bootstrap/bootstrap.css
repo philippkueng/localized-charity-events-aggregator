@@ -2513,9 +2513,9 @@ li {
   position: absolute;
 }
 #calendarNavigation > div:first-child a.year {
-  bottom: 4px;
+  bottom: 0px;
   font-size: 40px;
-  line-height: 15px;
+  line-height: 40px;
 }
 #calendarNavigation > div:first-child a.previous, #calendarNavigation > div:first-child a.next {
   -webkit-border-radius: 50%;

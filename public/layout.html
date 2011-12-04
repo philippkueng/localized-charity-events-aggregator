@@ -31,7 +31,7 @@
 		</div>
 
 		<div id="calendarNavigation" class="row">
-			<div class="span4"><a href="" class="year">2012</p><a href="" class="previous">&laquo;</a><a href="" class="next">&raquo;</a></div>
+			<div class="span4"><a href="" class="year">2012</a><a href="" class="previous">&laquo;</a><a href="" class="next">&raquo;</a></div>
 			<ul class="span12">
 				<li class="past"><a href="">JAN</a></li>
 				<li class="past"><a href="">FEB</a></li>
@@ -137,7 +137,8 @@
 		$(window).load(function() {
 			var GoogleMap = function(options) {
 				var geocoder = new google.maps.Geocoder(),
-					map = new google.maps.Map(document.getElementById('calendarMap'), $.extend({
+					calendarMap = document.getElementById('calendarMap'),
+					map = new google.maps.Map(calendarMap, $.extend({
 							zoom: 16,
 							mapTypeId: google.maps.MapTypeId.ROADMAP
 					}, options));
@@ -159,6 +160,9 @@
 								console.error("Geocode was not successful for the following reason: " + status);
 							}
 						});
+					},
+					refresh: function() {
+						google.maps.event.trigger(map, 'resize');
 					}
 				};
 			};
@@ -178,6 +182,7 @@
 								$event = $this.closest('li.event'),
 								eventId = $event.data('event-id');
 
+							$this.html('Hide map');
 							self.showMap(eventId);
 						});
 					};
@@ -185,13 +190,15 @@
 					this.showMap = function(eventId) {
 						var $item = $('#event-'+eventId),
 							$map = $item.find('.calendarMap'),
+							$parent = $calendarMap.parent(),
 							address = $map.data('address');
 
-						$calendarMap.parent().slideUp(400, function(evt) {
+						$parent.slideUp(400, function(evt) {
 							$calendarMap.show();
 							$map
 								.append($calendarMap.detach())
 								.slideDown(400, function(evt) {
+									gMap.refresh();
 									gMap.search(address, function() {
 
 									});
@@ -224,7 +231,7 @@
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
 
 	<script id="tmpl-event" type="text/x-jquery-tmpl">
-	    <li id="event-${_id}" class="event event-${_id}" data-event-id="${_id}">
+		<li id="event-${_id}" class="event event-${_id}" data-event-id="${_id}">
 			<div class="row">
 				<div class="calendarDate span4">
 						<ul>

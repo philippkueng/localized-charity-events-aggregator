@@ -28,11 +28,17 @@ action(function index() {
 
     this.title = 'Events index';
 
-    require(__dirname + '/db/mongoose_schema').Event.find({}).asc('startDate').exec({}, function (err, events) {
-        render({
-            events: events
-        });
-    });
+    require(__dirname + '/db/mongoose_schema')
+        .Event
+        .find({})
+        .asc('startDate')
+        .exec(
+            {},
+
+            function (err, events) {
+                render({events: events});
+            }
+        );
 });
 
 action(function show() {
@@ -67,6 +73,54 @@ action(function destroy() {
         }
         send("'" + path_to.events + "'");
     });
+});
+
+action(function search() {
+    if (req.query.q) {
+        (function () {
+            var mongodb = require('mongodb'),
+                server = new mongodb.Server('127.0.0.1', 27017, {}),
+                queryRegExp = new RegExp(req.query.q, 'i');
+
+            new mongodb.Db('localized-charity-events-aggregator-dev', server, {}).open(function (error, client) {
+                var collection = null;
+
+                if (error) {
+                    send({
+                        'query': req.query.q,
+                        'events': [],
+                        'error': error
+                    });
+
+                    return;
+                }
+
+                collection = new mongodb.Collection(client, 'events');
+
+                collection.find(
+                    {$or: [
+                        {title: {$regex: queryRegExp}},
+                        {description: {$regex: queryRegExp}},
+                        {location: {$regex: queryRegExp}}
+                    ]},
+                    {limit:100}
+                ).toArray(function(error, events) {
+                    send({
+                        'query': req.query.q,
+                        'events': events,
+                        'error': error
+                    });
+                });
+            });
+        }())
+    }
+    else {
+        send({
+            'query': req.query.q,
+            'events': [],
+            'error': null
+        });
+    }
 });
 
 function loadEvent() {

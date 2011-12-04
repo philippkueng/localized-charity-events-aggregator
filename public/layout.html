@@ -216,6 +216,10 @@
 
 		$(document).ready(function () {
 			$.getJSON('/search', {year: 2011, month: 12}, function (data) {
+				for (var i = 0; i < data.events.length; i++) {
+					data.events[i].startDate = new Date(Date.parse(data.events[i].startDate));
+				}
+
 				$('#tmpl-events').tmpl(data).appendTo("#calendar");
 			});
 		});
@@ -237,12 +241,12 @@
 						<ul>
 							<li>
 								<div class="calendarIcon">
-									<span class="day">${startDate.day}</span><span class="month">${startDate.month + 1}</span>
+									<span class="day">${startDate.getDate()}</span><span class="month">${startDate.getMonth() + 1}</span>
 								</div>
 							</li>
 							<li>
 								<div class="calendarTime">
-									<div class="tag">${startDate.hour}:${startDate.minute}</div>
+									<div class="tag">${startDate.getHours()}:00</div>
 								</div>
 							</li>
 						</ul>

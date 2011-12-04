@@ -75,19 +75,40 @@ action(function destroy() {
     });
 });
 
-action(function search() {
-    if (req.query.q) {
-        (function () {
-            var mongodb = require('mongodb'),
-                server = new mongodb.Server('127.0.0.1', 27017, {}),
-                queryRegExp = new RegExp(req.query.q, 'i');
+var mongoQuery = function (searchParams) {
+    var queryRegExp = new RegExp(searchParams.q, 'i');
 
-            new mongodb.Db('localized-charity-events-aggregator-dev', server, {}).open(function (error, client) {
+    return {$or: [
+        {title: {$regex: queryRegExp}},
+        {description: {$regex: queryRegExp}},
+        {location: {$regex: queryRegExp}}
+    ]};
+};
+
+var areSearchParamsActionable = function (searchParams) {
+    return (searchParams.q || (searchParams.year && searchParams.month));
+};
+
+var searchDescription = function (searchParams) {
+    return {text: searchParams.q, year: searchParams.year, month: searchParams.month};
+};
+
+action(function search() {
+    if (areSearchParamsActionable(req.query)) {
+        (function () {
+            var mongodb = require('mongodb');
+
+
+            new mongodb.Db(
+                'localized-charity-events-aggregator-dev',
+                new mongodb.Server('127.0.0.1', 27017, {}),
+                {}
+            ).open(function (error, client) {
                 var collection = null;
 
                 if (error) {
                     send({
-                        'query': req.query.q,
+                        'query': searchDescription(req.query),
                         'events': [],
                         'error': error
                     });
@@ -98,15 +119,11 @@ action(function search() {
                 collection = new mongodb.Collection(client, 'events');
 
                 collection.find(
-                    {$or: [
-                        {title: {$regex: queryRegExp}},
-                        {description: {$regex: queryRegExp}},
-                        {location: {$regex: queryRegExp}}
-                    ]},
-                    {limit:100}
+                    mongoQuery(req.query),
+                    {limit: 100}
                 ).toArray(function(error, events) {
                     send({
-                        'query': req.query.q,
+                        'query': searchDescription(req.query),
                         'events': events,
                         'error': error
                     });
@@ -116,7 +133,7 @@ action(function search() {
     }
     else {
         send({
-            'query': req.query.q,
+            'query': searchDescription(req.query),
             'events': [],
             'error': null
         });

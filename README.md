@@ -11,11 +11,9 @@ A number of organizations and initiatives are already providing such data, howev
 The service developed in this work is more important that the content itself.
 
 **Background**
-
 This project was initiated at [RHoK Switzerland](http://www.rhok.org/event/zurich-switzerland) between December the 3rd and 4th by [@ikr](http://twitter.com/ikr), [@bennyschudel](http://twitter.com/bennyschudel), [@henrik_ch](http://twitter.com/henrik_ch), Olivier Piron, Simon Hefti and [@philippkueng](http://twitter.com/philippkueng).
 
 **Additional Resources**
-
 [Problem Definition on rhok.org](http://www.rhok.org/problems/aggregator-communitycharity-events-based-locality)
 [Our proposed solution to the problem](http://www.rhok.org/solutions/charity-event-aggregator)
 [Slides used for presenting the project](https://docs.google.com/present/edit?id=0Ac1CjBkan4BTZDRoMjUzZF8xNWRyZ254Z2hu)
@@ -68,3 +66,7 @@ Copy actual project code
 ## License
 
 This project is licensed under the [CC BY-SA 3.0 - CreativeCommons Attribution-ShareAlike 3.0 License](http://creativecommons.org/licenses/by-sa/3.0/)
+
+## Screenshot
+
+![screenshot](public/images/lcea.png)

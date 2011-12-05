@@ -69,4 +69,4 @@ This project is licensed under the [CC BY-SA 3.0 - CreativeCommons Attribution-S
 
 ## Screenshot
 
-![screenshot](public/images/lcea.png?raw=true)
+![screenshot](localized-charity-events-aggregator/blob/master/public/images/lcea.png?raw=true)

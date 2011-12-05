@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'icalendar'
 require 'date'
+require 'time'
 require 'mongo'
 require 'hmac-md5'
 
@@ -14,18 +15,20 @@ coll = db.collection('events')
 
 cals.each do |cal|
   cal.events.each do |event|
-    puts event.dtstart
-    puts event.summary
-    # md5_hash = HMAC::MD5.new("#{event.dtstart}#{event.summary}#{ical_name}").hexdigest
-    md5_hash = "#{event.dtstart}#{event.summary}#{ical_name}"
+    
+    # create a unique hash based to prevent duplicate entries
+    s = "#{event.dtstart.to_s}#{event.summary}#{ical_name}"
+    hash = HMAC::MD5.new "secret"
+    hash.update s
+    
+    # find single entry with matching hash
+    event_entry = coll.find_one("event_hash" => hash.to_s)
   
-    event_entry = coll.find_one("event_hash" => md5_hash)
-  
-    if event_entry == nil
-      new_event = {'title' => event.summary, 'startDate' => event.dtstart.to_s, 'event_hash' => md5_hash}
+    if event_entry == nil # no entry with this hash was found
+      new_event = {'title' => event.summary, 'startDate' => Time.parse(event.dtstart.to_s), 'event_hash' => hash.to_s}
       coll.insert(new_event)
-    # else
-      # puts event_entry
     end
+    
+    puts "#{ical_name}.ical synced."
   end
 end
